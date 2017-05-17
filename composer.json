@@ -1,0 +1,15 @@
+{
+    "name": "caleb/blogs",
+    "authors": [
+        {
+            "name": "Caleb Ostrander",
+            "email": "costrander@mail.greenriver.edu"
+        }
+    ],
+    "require": {
+        "bcosca/fatfree-core": "dev-master"
+    },
+    "autoload":{
+        "classmap":["model/", "classes/"]
+    }
+}
