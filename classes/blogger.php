@@ -13,6 +13,7 @@
         private $_photo;
         private $_bio;
         private $_id;
+        private $_numPosts;
         
         /**
          * A constructor for the Blogger class setting all the basic information
@@ -24,8 +25,9 @@
          * @param Photo 
          * @param Biography
          * @param id
+         * @param number of their posts
          */
-        function __construct($username = "NA", $email = "NA", $password = "NA", $photo = "NA", $bio = "NA", $id = -1)
+        function __construct($username = "NA", $email = "NA", $password = "NA", $photo = "NA", $bio = "NA", $id = -1, $numPosts = 0)
         {
             $this->_username = $username;
             $this->_email = $email;
@@ -33,6 +35,7 @@
             $this->_photo = $photo;
             $this->_bio = $bio;
             $this->_id = $id;
+            $this->_numPosts = $numPosts;
         }
         
         /**
@@ -153,5 +156,25 @@
         function getBio()
         {
             return $this->_bio;
+        }
+        
+        /**
+         * A setter for their posts
+         *
+         *@param Their number of posts
+         */
+        function setNumPosts($numPosts)
+        {
+            $this->_numPosts = $numPosts;
+        }
+        
+        /**
+         * A getter for their numPosts
+         *
+         * @return Their numPosts
+         */
+        function getNumPosts()
+        {
+            return $this->_numPosts;
         }
     }

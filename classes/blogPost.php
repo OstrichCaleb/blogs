@@ -8,7 +8,7 @@
     class BlogPost
     {
         private $_title;
-        private $_entry;
+        private $_post;
         private $_id;
         
         /**
@@ -16,13 +16,13 @@
          * for a blog post
          *
          * @param Blog title
-         * @param Entry text
+         * @param Entry post
          * @param Id
          */
-        function __construct($title = "NA", $entry = "NA", $id = -1)
+        function __construct($title = "NA", $post = "NA", $id = -1)
         {
             $this->_title = $title;
-            $this->_entry = $entry;
+            $this->_post = $post;
             $this->_id = $id;
         }
         
@@ -47,23 +47,23 @@
         }
         
         /**
-         * A setter for their entry
+         * A setter for their post
          *
-         *@param Their entry
+         *@param Their post
          */
-        function setEntry($entry)
+        function setPost($post)
         {
-            $this->_entry = $entry;
+            $this->_post = $post;
         }
         
         /**
-         * A getter for their entry
+         * A getter for their post
          *
-         * @return Their entry
+         * @return Their post
          */
-        function getEntry()
+        function getPost()
         {
-            return $this->_entry;
+            return $this->_post;
         }
         
         /**
