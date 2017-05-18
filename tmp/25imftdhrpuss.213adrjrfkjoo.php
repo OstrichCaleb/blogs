@@ -22,12 +22,14 @@ Blog Assignment -->
   </head>
   
   <body>
+
     
-    <div class="row">
-      <include href="includes/sidebarAll.inc.html"/>
-      <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
-        <h1>Blog</h1>
-      </main>
+    <div class="container text-center" id="main-container">
+        <div class="row">
+            <div class="col-sm-2">
+                <h1>Blogs</h1>
+            </div>
+        </div>
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

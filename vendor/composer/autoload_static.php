@@ -12,6 +12,8 @@ class ComposerStaticInit0a1086126b7a73105b8f7cedbd9e0541
         'Base' => __DIR__ . '/..' . '/bcosca/fatfree-core/base.php',
         'Basket' => __DIR__ . '/..' . '/bcosca/fatfree-core/basket.php',
         'Bcrypt' => __DIR__ . '/..' . '/bcosca/fatfree-core/bcrypt.php',
+        'BlogPost' => __DIR__ . '/../..' . '/classes/blogPost.php',
+        'Blogger' => __DIR__ . '/../..' . '/classes/blogger.php',
         'CLI\\Agent' => __DIR__ . '/..' . '/bcosca/fatfree-core/cli/ws.php',
         'CLI\\WS' => __DIR__ . '/..' . '/bcosca/fatfree-core/cli/ws.php',
         'Cache' => __DIR__ . '/..' . '/bcosca/fatfree-core/base.php',
