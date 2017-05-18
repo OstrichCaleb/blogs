@@ -17,5 +17,11 @@
         echo Template::instance()->render('pages/home.html');
     }
     );
+	
+	$f3->route('GET /create-blog', function()
+    {
+        echo Template::instance()->render('pages/createBlog.html');
+    }
+    );
     
     $f3->run();

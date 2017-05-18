@@ -23,7 +23,7 @@ Blog Assignment -->
   
   <body>
     <div class="row">
-      <include href="includes/sidebarUser.inc.html"/>
+      <?php echo $this->render('includes/sidebarUser.inc.html',NULL,get_defined_vars(),0); ?>
       <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
         <div class="row">
           <div class="col-sm-10">
