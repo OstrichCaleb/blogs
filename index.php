@@ -23,5 +23,17 @@
         echo Template::instance()->render('pages/createBlog.html');
     }
     );
+	
+	$f3->route('GET /template', function()
+    {
+        echo Template::instance()->render('pages/template.html');
+    }
+    );
+	
+	$f3->route('GET /about-us', function()
+    {
+        echo Template::instance()->render('pages/aboutUs.html');
+    }
+    );
     
     $f3->run();

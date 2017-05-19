@@ -10,6 +10,7 @@
         private $_title;
         private $_post;
         private $_id;
+        private $_memberId;
         
         /**
          * A constructor for the blog post class setting all the basic information
@@ -18,12 +19,14 @@
          * @param Blog title
          * @param Entry post
          * @param Id
+         * @param memberId
          */
-        function __construct($title = "NA", $post = "NA", $id = -1)
+        function __construct($title = "NA", $post = "NA", $id = -1, $memberId = -1;)
         {
             $this->_title = $title;
             $this->_post = $post;
             $this->_id = $id;
+            $this->_memberId = $memberId;
         }
         
         /**
@@ -84,5 +87,25 @@
         function getId()
         {
             return $this->_id;
+        }
+        
+        /**
+         * A setter for their memberId
+         *
+         *@param Their memberId
+         */
+        function setMemberId($memberId)
+        {
+            $this->_memberId = $memberId;
+        }
+        
+        /**
+         * A getter for their memberId
+         *
+         * @return Their memberId
+         */
+        function getMemberId()
+        {
+            return $this->_memberId;
         }
     }

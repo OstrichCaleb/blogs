@@ -69,35 +69,18 @@ require '/home/costrander/config.php';
          */
         function addPost($post)
         {
-            $insert = 'INSERT INTO posts (post, title)
-                                    VALUES (:post, :title)';
+            $insert = 'INSERT INTO posts (post, title, member_id)
+                                    VALUES (:post, :title, member_id)';
             
             $statement = $this->_pdo->prepare($insert);
             $statement->bindValue(':post', $post->getPost(), PDO::PARAM_STR);
             $statement->bindValue(':title', $post->getTitle(), PDO::PARAM_STR);
+            $statement->bindValue(':title', $post->getMemberId(), PDO::PARAM_STR);
             
             $statement->execute();
             
             //Return ID of inserted row
             return $this->_pdo->lastInsertId();
-        }
-        
-        /**
-         * A method to add a blog to a bloggers profile
-         *
-         *@param The blogger you want to add
-         *@param The blog post you want to add
-         */
-        function addBlogConnection($blogger_id, $post_id)
-        {
-            $insert = 'INSERT INTO bloggerposts (blogger_id, post_id)
-                                    VALUES (:blogger_id, :post_id)';
-            
-            $statement = $this->_pdo->prepare($insert);
-            $statement->bindValue(':blogger_id', $blogger_id, PDO::PARAM_INT);
-            $statement->bindValue(':post_id', $post_id, PDO::PARAM_INT);
-            
-            $statement->execute();
         }
          
         
@@ -110,17 +93,18 @@ require '/home/costrander/config.php';
          */
         function allBloggers()
         {
-            $select = 'SELECT username, email, photo, bio, blogger_id FROM bloggers';
+            $select = 'SELECT *, (SELECT COUNT(*) AS "numPosts" FROM posts WHERE posts.member_id = bloggers.blogger_id) FROM bloggers';
                             
             $results = $this->_pdo->query($select);
              
             $resultsArray = array();
              
-            //map each blogger id to a row of data for that blogger
+            // create an array of blogger objects
             while ($row = $results->fetch(PDO::FETCH_ASSOC)) {
-                $resultsArray[$row['blogger_id']] = $row;
+                $temp = new Blogger($row['username'], $row['email'], $row['photo'], $row['bio'], $row['blogger_id'], $row['numPosts']);
+                $resultsArray[] = $temp;
             }
-             
+            
             return $resultsArray;
         }
          
@@ -145,44 +129,4 @@ require '/home/costrander/config.php';
             return $statement->fetch(PDO::FETCH_ASSOC);
         }
         
-        /**
-         * A method to return the string of interests of any given member
-         *
-         *
-         *@param the members id
-         */
-        function getInterestString($member_id)
-        {
-            $select = 'SELECT interest_id FROM memberinterest WHERE member_id=:id';
-             
-            $statement = $this->_pdo->prepare($select);
-            $statement->bindValue(':id', $member_id, PDO::PARAM_INT);
-            $statement->execute();
-             
-            $interests = $statement->fetchAll(PDO::FETCH_ASSOC);
-            
-            $interestString = "";
-            $count = 0;
-            $select = 'SELECT interest_desc FROM interests WHERE interest_id=:id';
-            $statement = $this->_pdo->prepare($select);
-            
-            foreach($interests as $interest_id)
-            {
-                $statement->bindValue(':id', $interest_id['interest_id'], PDO::PARAM_INT);
-                $statement->execute();
-                
-                $row = $statement->fetch(PDO::FETCH_ASSOC);
-                
-                if ($count > 0)
-                {
-                    $interestString .= ", " . $row['interest_desc'];
-                } else
-                {
-                    $interestString .= $row['interest_desc'];
-                    $count++;
-                }
-            }
-            
-            return $interestString;
-        }
     }

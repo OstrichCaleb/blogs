@@ -18,7 +18,7 @@
 <div class="container-fluid">
   <div class="row content">
     
-    <include href="includes/sidebarAll.inc.html"/>
+    <?php echo $this->render('includes/sidebarAll.inc.html',NULL,get_defined_vars(),0); ?>
 
     <div class="col-sm-9">
       <div class="row">

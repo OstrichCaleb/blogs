@@ -27,7 +27,7 @@
          * @param id
          * @param number of their posts
          */
-        function __construct($username = "NA", $email = "NA", $password = "NA", $photo = "NA", $bio = "NA", $id = -1, $numPosts = 0)
+        function __construct($username = "NA", $email = "NA", $photo = "NA", $bio = "NA", $id = -1, $numPosts = 0, $password = "NA")
         {
             $this->_username = $username;
             $this->_email = $email;
