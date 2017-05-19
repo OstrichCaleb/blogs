@@ -13,6 +13,7 @@ return array(
     'Bcrypt' => $vendorDir . '/bcosca/fatfree-core/bcrypt.php',
     'BlogPost' => $baseDir . '/classes/blogPost.php',
     'Blogger' => $baseDir . '/classes/blogger.php',
+    'BloggerDB' => $baseDir . '/model/bloggerdb.php',
     'CLI\\Agent' => $vendorDir . '/bcosca/fatfree-core/cli/ws.php',
     'CLI\\WS' => $vendorDir . '/bcosca/fatfree-core/cli/ws.php',
     'Cache' => $vendorDir . '/bcosca/fatfree-core/base.php',
