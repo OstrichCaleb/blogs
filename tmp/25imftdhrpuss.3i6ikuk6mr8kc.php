@@ -18,7 +18,7 @@
 <div class="container-fluid">
   <div class="row content">
     
-    <include href="includes/sidebarAll.inc.html"/>
+    <?php echo $this->render('includes/sidebarAll.inc.html',NULL,get_defined_vars(),0); ?>
 
     <div class="col-sm-9">
       <div class="row">
@@ -32,7 +32,7 @@
       </div>
       <div class="row text-center">
         <div class="col">
-          <form action="./login" method="post" class="form-vertical">
+          <form action="./#" method="post" class="form-vertical">
             <div class="row">
               <div class="col-sm-6 col-sm-offset-3">
                 <div class="row">
@@ -40,7 +40,7 @@
                     <input type="text" class="form-control" name="username" placeholder="Username">
                   </div>
                   <div class="form-group col-sm-4">
-                    <label for="username" class="control-label col-sm">Username</label>
+                    <label for="password" class="control-label col-sm">Username</label>
                   </div>
                   <div class="form-group col-sm-8">
                     <input type="password" class="form-control" name="password" placeholder="Password">
