@@ -23,7 +23,12 @@ Blog Assignment -->
   
   <body>
     <div class="row">
-      <include href="includes/sidebarUser.inc.html"/>
+      
+      <check if="{{ @id == NULL }}">
+      <true><include href="includes/sidebarAll.inc.html"/></true>
+      <false><include href="includes/sidebarUser.inc.html"/></false>
+    </check>
+      
       <div class="container">
         <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
           <div class="row">

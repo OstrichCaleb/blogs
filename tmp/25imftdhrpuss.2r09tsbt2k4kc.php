@@ -18,7 +18,10 @@
 <div class="container-fluid">
   <div class="row content">
     
-    <?php echo $this->render('includes/sidebarAll.inc.html',NULL,get_defined_vars(),0); ?>
+    <?php if ($id == NULL): ?>
+      <?php echo $this->render('includes/sidebarAll.inc.html',NULL,get_defined_vars(),0); ?>
+      <?php else: ?><?php echo $this->render('includes/sidebarUser.inc.html',NULL,get_defined_vars(),0); ?>
+    <?php endif; ?>
 
     <div class="col-sm-9">
       <div class="row">

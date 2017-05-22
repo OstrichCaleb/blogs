@@ -18,7 +18,10 @@
 <div class="container-fluid">
   <div class="row content">
     
-    <?php echo $this->render('includes/sidebarAll.inc.html',NULL,get_defined_vars(),0); ?>
+    <?php if ($id == NULL): ?>
+      <?php echo $this->render('includes/sidebarAll.inc.html',NULL,get_defined_vars(),0); ?>
+      <?php else: ?><?php echo $this->render('includes/sidebarUser.inc.html',NULL,get_defined_vars(),0); ?>
+    <?php endif; ?>
 
     <div class="col-sm-9">
       <div class="row">
@@ -32,18 +35,18 @@
       </div>
       <div class="row text-center">
         <div class="col">
-          <form action="./#" method="post" class="form-vertical">
+          <form action="./login" method="post" class="form-vertical">
             <div class="row">
               <div class="col-sm-6 col-sm-offset-3">
                 <div class="row">
                   <div class="form-group col-sm-8">
-                    <input type="text" class="form-control" name="username" placeholder="Username">
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
                   </div>
                   <div class="form-group col-sm-4">
-                    <label for="password" class="control-label col-sm">Username</label>
+                    <label for="username" class="control-label col-sm">Username</label>
                   </div>
                   <div class="form-group col-sm-8">
-                    <input type="password" class="form-control" name="password" placeholder="Password">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
                   </div>
                   <div class="form-group col-sm-4">
                     <label for="password" class="control-label col-sm">Password</label>

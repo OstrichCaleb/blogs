@@ -18,10 +18,21 @@
 <div class="container-fluid">
   <div class="row content">
     
-    <?php echo $this->render('includes/sidebarAll.inc.html',NULL,get_defined_vars(),0); ?>
+    <?php if ($id): ?>
+      <?php echo $this->render('includes/sidebarAll.inc.html',NULL,get_defined_vars(),0); ?>
+      <?php else: ?><?php echo $this->render('includes/sidebarUser.inc.html',NULL,get_defined_vars(),0); ?>
+    <?php endif; ?>
 
     <div class="col-sm-9">
-      
+      <div class="row">
+        <div class="col-sm-9">
+          <h1></h1>
+          <h4></h4>
+        </div>
+        <div class="col-sm-3">
+          <img src="#">
+        </div>
+      </div>
     </div>
   </div>
 </div>

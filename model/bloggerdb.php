@@ -107,6 +107,19 @@ require '/home/costrander/config.php';
             
             return $resultsArray;
         }
+        
+        function login($user)
+        {
+            $select = 'SELECT blogger_id, password FROM bloggers where username = :user';
+             
+            $statement = $this->_pdo->prepare($select);
+            $statement->bindValue(':user', $user, PDO::PARAM_INT);
+            $statement->execute();
+             
+            $creds = $statement->fetch(PDO::FETCH_ASSOC);
+            
+            return $creds;
+        }
          
         /**
          * Returns a member that has the given id.

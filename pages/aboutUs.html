@@ -18,7 +18,10 @@
 <div class="container-fluid">
   <div class="row content">
     
-    <include href="includes/sidebarAll.inc.html"/>
+    <check if="{{ @id == NULL }}">
+      <true><include href="includes/sidebarAll.inc.html"/></true>
+      <false><include href="includes/sidebarUser.inc.html"/></false>
+    </check>
 
     <div class="col-sm-9">
       <div class="row">

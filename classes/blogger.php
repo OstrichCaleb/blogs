@@ -73,7 +73,7 @@
          *
          * @return Their password
          */
-        function getPasswords()
+        function getPassword()
         {
             return $this->_password;
         }

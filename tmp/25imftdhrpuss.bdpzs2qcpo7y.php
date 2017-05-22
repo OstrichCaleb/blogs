@@ -7,7 +7,7 @@
         <img src="images/#">
       </li>
       <li class="nav-item">
-        <a class="nav-link active" href="./#">Home</a>
+        <a class="nav-link active" href="./">Home</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="./new-blogger">Become a Blogger</a>
