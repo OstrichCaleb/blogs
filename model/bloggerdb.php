@@ -213,7 +213,7 @@ require '/home/costrander/config.php';
             $statement->execute();
         
             $row = $statement->fetch(PDO::FETCH_ASSOC);
-            $temp = new BlogPost($row['title'], $row['post'], $row['date'], str_word_count($row['post']), $row['post_id']);
+            $temp = new BlogPost($row['title'], $row['post'], $row['date'], str_word_count($row['post']), $row['post_id'], $row['member_id']);
             
             return $temp;
         }

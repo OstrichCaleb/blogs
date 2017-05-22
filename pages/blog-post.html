@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>TEMPLATE</title>
+  <title>Blog Post</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../../../css/bootstrap.min.css" rel="stylesheet">
@@ -24,14 +24,14 @@
     </check>
 
     <div class="col-sm-9">
-      <div class="row">
-        <div class="col-sm-9">
-          <h1></h1>
-          <h4></h4>
+      <div class="frame">
+        <div class="col">
+          <img src="../images/{{ @blogger->getPhoto() }}" class="pull-right img-thumbnail" height="20%" width="20%">
+          <h1 class="text-center">{{ @blog->getTitle() }}</h1>
         </div>
-        <div class="col-sm-3">
-          <img src="#">
-        </div>
+      </div>
+      <div class="frame">
+        <p>{{ @blog->getPost() }}</p>
       </div>
     </div>
   </div>
