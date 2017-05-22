@@ -156,7 +156,7 @@ require '/home/costrander/config.php';
          */
         function latestBlog($id)
         {
-            $select = 'SELECT MAX(date), post FROM posts WHERE member_id = :id';
+            $select = 'SELECT post FROM posts WHERE member_id = :id ORDER BY date DESC LIMIT 1';
              
             $statement = $this->_pdo->prepare($select);
             $statement->bindValue(':id', $id, PDO::PARAM_INT);
