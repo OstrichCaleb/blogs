@@ -93,7 +93,7 @@ require '/home/costrander/config.php';
          */
         function allBloggers()
         {
-            $select = 'SELECT *, (SELECT COUNT(*) AS "numPosts" FROM posts WHERE posts.member_id = bloggers.blogger_id), (SELECT summary AS "summary" FROM posts WHERE posts.member_id = bloggers.blogger_id) FROM bloggers';
+            $select = "SELECT *, (SELECT COUNT(*) AS 'numPosts' FROM posts WHERE posts.member_id = bloggers.blogger_id) FROM bloggers";
                             
             $results = $this->_pdo->query($select);
              
@@ -101,13 +101,8 @@ require '/home/costrander/config.php';
              
             // create an array of blogger objects
             while ($row = $results->fetch(PDO::FETCH_ASSOC)) {
-                if ($row['summary'] == NULL){
-                    $summary = "NA";
-                }
-                else{
-                    $summary = $row['summary'];
-                }
-                $temp = new Blogger($row['username'], $row['email'], $row['photo'], $row['bio'], $row['blogger_id'], $row['numPosts'], $summary);
+                
+                $temp = new Blogger($row['username'], $row['email'], $row['photo'], $row['bio'], $row['blogger_id'], $row["(SELECT COUNT(*) AS 'numPosts' FROM posts WHERE posts.member_id = bloggers.blogger_id)"], "pass", $this->latestBlog($row['blogger_id']));
                 $resultsArray[] = $temp;
             }
             
@@ -146,7 +141,7 @@ require '/home/costrander/config.php';
              
             $row = $statement->fetch(PDO::FETCH_ASSOC);
             
-            $temp = new Blogger($row['username'], $row['email'], $row['photo'], $row['bio'], $row['blogger_id'], $row['numPosts'], $summary);
+            $temp = new Blogger($row['username'], $row['email'], $row['photo'], $row['bio'], $row['blogger_id'], $row['numPosts'], $this->latestBlog($id));
             
             return $temp;
         }

@@ -29,7 +29,7 @@
          * @param number of their posts
          * @param their latests post
          */
-        function __construct($username = "NA", $email = "NA", $photo = "NA", $bio = "NA", $id = -1, $numPosts = 0, $password = "NA", $latest = "NA")
+        function __construct($username = "NA", $email = "NA", $photo = "NA", $bio = "NA", $id = -1, $numPosts = 0, $password = "NA", $latest = "")
         {
             $this->_username = $username;
             $this->_email = $email;

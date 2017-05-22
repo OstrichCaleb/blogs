@@ -38,13 +38,13 @@
                   <a href="./profile/<?= $blogger->getId() ?>">view blogs</a>
                 </div>
                 <div class="col-sm-4 col-sm-offset-4">
-                  <p>Total: <?= $blogger->getNumPosts ?></p>
+                  <p>Total: <?= $blogger->getNumPosts() ?></p>
                 </div>
               </div>
               <div class="row">
                 <div class="col">
                   <p>Something from my latest blog: </p>
-                  <p><?= $blogger->getLatest ?></p>
+                  <p><?= $blogger->getLatest() ?></p>
                 </div>
               </div>
           </div>

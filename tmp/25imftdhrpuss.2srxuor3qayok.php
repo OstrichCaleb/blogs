@@ -11,7 +11,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   
-  <link rel="stylesheet" href="styles/style.css">
+  <link rel="stylesheet" href="../styles/style.css">
 </head>
 <body>
 
@@ -19,8 +19,8 @@
   <div class="row content">
     
     <?php if ($SESSION['id'] == NULL): ?>
-      <?php echo $this->render('includes/sidebarAll.inc.html',NULL,get_defined_vars(),0); ?>
-      <?php else: ?><?php echo $this->render('includes/sidebarUser.inc.html',NULL,get_defined_vars(),0); ?>
+      <?php echo $this->render('includes/allProfile.inc.html',NULL,get_defined_vars(),0); ?>
+      <?php else: ?><?php echo $this->render('includes/userProfile.inc.html',NULL,get_defined_vars(),0); ?>
     <?php endif; ?>
 
     <div class="col-sm-9">
