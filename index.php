@@ -98,10 +98,10 @@
 			$f3->reroute('/');
 		}
 		
+		$bloggerDB = $GLOBALS['bloggerDB'];
+		
 		if ($_SERVER['REQUEST_METHOD'] === 'POST')
 		{
-			$bloggerDB = $GLOBALS['bloggerDB'];
-			
 			$title = $_POST['title'];
 			$post = $_POST['post'];
 			
@@ -112,6 +112,9 @@
 			
 			unset($_POST);
 		}
+		
+		$f3->set('blogs', $bloggerDB->blogsById($_SESSION['id']));
+		$f3->set('blogger', $bloggerDB->bloggerById($_SESSION['id']));
 		
         echo Template::instance()->render('pages/my-blogs.html');
     }
