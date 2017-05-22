@@ -54,12 +54,18 @@
     }
     );
 	
-	$f3->route('GET /blog-post', function($f3)
+	$f3->route('GET /blog-post/@blogId', function($f3, $params)
     {
-		if ($_SESSION['id'] == NULL)
-		{
-			$f3->reroute('/');
-		}
+		$blogId = $params['blogId'];
+		
+		$bloggerDB = $GLOBALS['bloggerDB'];
+		
+		$f3->set('blog', $bloggerDB->blogById($blogId));
+		$blog = $f3->get('blog');
+		$memberId = $blog->getMemberId();
+		
+		$f3->set('blogger', $bloggerDB->bloggerById($memberId));
+		
         echo Template::instance()->render('pages/blog-post.html');
     }
     );

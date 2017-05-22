@@ -141,7 +141,7 @@ require '/home/costrander/config.php';
              
             $row = $statement->fetch(PDO::FETCH_ASSOC);
             
-            $temp = new Blogger($row['username'], $row['email'], $row['photo'], $row['bio'], $row['blogger_id'], $row['numPosts'], $this->latestBlog($id));
+            $temp = new Blogger($row['username'], $row['email'], $row['photo'], $row['bio'], $row['blogger_id'], $row['numPosts'], null, $this->latestBlog($id));
             
             return $temp;
         }
@@ -194,6 +194,28 @@ require '/home/costrander/config.php';
             }
             
             return $resultsArray;
+        }
+        
+        /**
+         * Returns a blog by a user that has the given id.
+         *
+         * @access public
+         * @param int $id the id of the blog
+         *
+         * @return a blog object
+         */
+        function blogById($id)
+        {
+            $select = "SELECT * FROM posts WHERE post_id = :id";
+             
+            $statement = $this->_pdo->prepare($select);
+            $statement->bindValue(':id', $id, PDO::PARAM_INT);
+            $statement->execute();
+        
+            $row = $statement->fetch(PDO::FETCH_ASSOC);
+            $temp = new BlogPost($row['title'], $row['post'], $row['date'], str_word_count($row['post']), $row['post_id']);
+            
+            return $temp;
         }
         
         /**

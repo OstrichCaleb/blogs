@@ -18,10 +18,10 @@
 <div class="container-fluid">
   <div class="row content">
     
-    <check if="{{ @SESSION.id == NULL }}">
-      <true><include href="includes/allProfile.inc.html"/></true>
-      <false><include href="includes/userProfile.inc.html"/></false>
-    </check>
+    <?php if ($SESSION['id'] == NULL): ?>
+      <?php echo $this->render('includes/allProfile.inc.html',NULL,get_defined_vars(),0); ?>
+      <?php else: ?><?php echo $this->render('includes/userProfile.inc.html',NULL,get_defined_vars(),0); ?>
+    <?php endif; ?>
 
     <div class="col-sm-9">
       <div class="row">
