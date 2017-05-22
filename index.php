@@ -18,14 +18,15 @@
 	
     $f3->route('GET|POST /', function($f3)
     {
-		$bloggerDB = $GLOBALS['bloggerDB'];
-		
 		if ($_SERVER['REQUEST_METHOD'] === 'POST')
 		{
-			$pass = hash(sha1, $_POST['password']);
+			$bloggerDB = $GLOBALS['bloggerDB'];
+			
+			$pass = md5($_POST['password']);
 			$blogger = new Blogger($_POST['username'], $_POST['email'], $_POST['photo'], $_POST['bio'], -1, 0, $pass);
 			$id = $bloggerDB->addBlogger($blogger);
-			$f3->set('id', $id);
+			$_SESSION['id'] = $id;
+			$f3->set('SESSION.id', $id);
 			unset($_POST);
 		}
 		
@@ -41,7 +42,7 @@
 	
 	$f3->route('GET /blog-post', function($f3)
     {
-		if ($f3->get('id') == NULL)
+		if ($_SESSION['id'] == NULL)
 		{
 			$f3->reroute('/');
 		}
@@ -54,23 +55,21 @@
 		if ($_SERVER['REQUEST_METHOD'] === 'POST')
 		{
 			$user = $_POST['username'];
-			$pass = $_POST['password'];
-			$pass = hash(sha1, $password);
+			$pass = md5($_POST['password']);
 			
 			$bloggerDB = $GLOBALS['bloggerDB'];
 			
 			$creds = $bloggerDB->login($user);
-			echo $creds['password'] . "/        /";
-			echo $pass;
+			
 			if ($creds['password'] == $pass)
 			{
-				$f3->set('id', $bloggerCreds['blogger_id']);
+				$f3->set('SESSION.id', $id);
+				$_SESSION['id'] = $creds['blogger_id'];
 				unset($_POST);
 			}
 		}
 		
-		
-		if ($f3->get('id') != NULL)
+		if ($_SESSION['id'] != NULL)
 		{
 			$f3->reroute('/');
 		}
@@ -80,7 +79,7 @@
 	
 	$f3->route('GET /my-blogs', function($f3)
     {
-		if ($f3->get('id') == NULL)
+		if ($_SESSION['id'] == NULL)
 		{
 			$f3->reroute('/');
 		}
@@ -90,7 +89,7 @@
     
 	$f3->route('GET /new-blog', function($f3)
     {
-		if ($f3->get('id') == NULL)
+		if ($_SESSION['id'] == NULL)
 		{
 			$f3->reroute('/');
 		}
@@ -112,7 +111,7 @@
 	
 	$f3->route('GET /logout', function($f3)
     {
-		$f3->set('id', NULL);
+		$_SESSION['id'] = NULL;
         $f3->reroute('/');
     }
     );

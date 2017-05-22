@@ -23,7 +23,7 @@ Blog Assignment -->
   
   <body>
     
-    <check if="{{ @id == NULL }}">
+    <check if="{{ @SESSION.id == NULL }}">
       <true><include href="includes/sidebarAll.inc.html"/></true>
       <false><include href="includes/sidebarUser.inc.html"/></false>
     </check>
