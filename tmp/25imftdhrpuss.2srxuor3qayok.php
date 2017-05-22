@@ -37,7 +37,16 @@
             </div>
           </div>
           <?php foreach (($blogs?:[]) as $blog): ?>
-            <p><?= $blog->getTitle() ?></p>
+            <div class="row">
+              <div class="col">
+                <p><a href="../blog-post/<?= $blogger->getId() ?>"><?= $blog->getTitle() ?></a> - word count <?= $blog->getWordCount() ?> - <?= $blog->getDate() ?></p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <p><?= $blog->getPost() ?></p>
+              </div>
+            </div>
           <?php endforeach; ?>
         </div>
         <div class="col-sm-3">

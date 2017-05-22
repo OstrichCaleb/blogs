@@ -91,12 +91,28 @@
     }
     );
 	
-	$f3->route('GET /my-blogs', function($f3)
+	$f3->route('GET|POST /my-blogs', function($f3)
     {
 		if ($_SESSION['id'] == NULL)
 		{
 			$f3->reroute('/');
 		}
+		
+		if ($_SERVER['REQUEST_METHOD'] === 'POST')
+		{
+			$bloggerDB = $GLOBALS['bloggerDB'];
+			
+			$title = $_POST['title'];
+			$post = $_POST['post'];
+			
+			$post = new BlogPost($title, $post);
+			$post->setMemberId($_SESSION['id']);
+			
+			$bloggerDB->addPost($post);
+			
+			unset($_POST);
+		}
+		
         echo Template::instance()->render('pages/my-blogs.html');
     }
     );

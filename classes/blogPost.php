@@ -12,6 +12,7 @@
         private $_id;
         private $_memberId;
         private $_date;
+        private $_wordCount;
         
         /**
          * A constructor for the blog post class setting all the basic information
@@ -22,14 +23,16 @@
          * @param Id
          * @param memberId
          * @param date entered
+         * @param words in post
          */
-        function __construct($title = "NA", $post = "NA", $date = NULL, $id = -1, $memberId = -1)
+        function __construct($title = "NA", $post = "NA", $date = NULL, $wordCount = 0, $id = -1, $memberId = -1)
         {
             $this->_title = $title;
             $this->_post = $post;
             $this->_date = $date;
             $this->_id = $id;
             $this->_memberId = $memberId;
+            $this->_wordCount = $wordCount;
         }
         
         /**
@@ -129,6 +132,26 @@
          */
         function getDate()
         {
-            return $this->_date;
+            return substr($this->_date, 0, 11);
+        }
+        
+        /**
+         * A setter for their wordCount
+         *
+         *@param Their wordCount
+         */
+        function setWordCount($wordCount)
+        {
+            $this->_wordCount = $wordCount;
+        }
+        
+        /**
+         * A getter for their wordCount
+         *
+         * @return Their wordCount
+         */
+        function getWordCount()
+        {
+            return $this->_wordCount;
         }
     }

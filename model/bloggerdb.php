@@ -70,12 +70,12 @@ require '/home/costrander/config.php';
         function addPost($post)
         {
             $insert = 'INSERT INTO posts (post, title, member_id)
-                                    VALUES (:post, :title, member_id)';
+                                    VALUES (:post, :title, :member_id)';
             
             $statement = $this->_pdo->prepare($insert);
             $statement->bindValue(':post', $post->getPost(), PDO::PARAM_STR);
             $statement->bindValue(':title', $post->getTitle(), PDO::PARAM_STR);
-            $statement->bindValue(':title', $post->getMemberId(), PDO::PARAM_STR);
+            $statement->bindValue(':member_id', $post->getMemberId(), PDO::PARAM_STR);
             
             $statement->execute();
             
@@ -189,7 +189,7 @@ require '/home/costrander/config.php';
              
             // create an array of blogger objects
             while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
-                $temp = new BlogPost($row['title'], $row['post']);
+                $temp = new BlogPost($row['title'], $row['post'], $row['date'], str_word_count($row['post']));
                 $resultsArray[] = $temp;
             }
             

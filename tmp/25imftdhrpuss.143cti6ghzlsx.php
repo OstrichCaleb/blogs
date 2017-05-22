@@ -23,7 +23,12 @@ Blog Assignment -->
   
   <body>
     <div class="row">
-      <?php echo $this->render('includes/sidebarUser.inc.html',NULL,get_defined_vars(),0); ?>
+      
+      <?php if ($SESSION['id'] == NULL): ?>
+      <?php echo $this->render('includes/sidebarAll.inc.html',NULL,get_defined_vars(),0); ?>
+      <?php else: ?><?php echo $this->render('includes/sidebarUser.inc.html',NULL,get_defined_vars(),0); ?>
+    <?php endif; ?>
+      
       <div class="container">
         <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
           <div class="row">
@@ -35,11 +40,11 @@ Blog Assignment -->
             </div>
           </div>
           
-          <form action="./" method="POST" id="postForm">
+          <form action="./my-blogs" method="POST" id="postForm">
             
             <div class="form-group row">
               <div class="col-xs-10">
-                <input class="form-control" id="title" type="text">
+                <input class="form-control" name="title" id="title" type="text">
               </div>
               <div class="col-xs-2 text-center">
                 <label for="title">Title</label>
