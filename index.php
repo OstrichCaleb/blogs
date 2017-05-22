@@ -102,15 +102,20 @@
 		
 		if ($_SERVER['REQUEST_METHOD'] === 'POST')
 		{
-			$title = $_POST['title'];
-			$post = $_POST['post'];
+			if (sizeof($_POST[0]) > 1){
+				$title = $_POST['title'];
+				$post = $_POST['post'];
+				
+				$post = new BlogPost($title, $post);
+				$post->setMemberId($_SESSION['id']);
+				
+				$bloggerDB->addPost($post);
+				
+				unset($_POST);
+			} else{
+				$bloggerDB->delPost($_POST['id']);
+			}
 			
-			$post = new BlogPost($title, $post);
-			$post->setMemberId($_SESSION['id']);
-			
-			$bloggerDB->addPost($post);
-			
-			unset($_POST);
 		}
 		
 		$f3->set('blogs', $bloggerDB->blogsById($_SESSION['id']));

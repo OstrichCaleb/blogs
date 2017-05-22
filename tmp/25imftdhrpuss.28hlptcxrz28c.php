@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>TEMPLATE</title>
+  <title>Your blogs</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../../css/bootstrap.min.css" rel="stylesheet">
@@ -34,7 +34,7 @@
       </div>
       <div class="row">
         <div class="col-sm-9">
-          <table>
+          <table class="table table-bordered">
             <tr>
               <th>Blog</th>
               <th>Update</th>
@@ -44,7 +44,12 @@
               <tr>
                 <td><?= $blog->getTitle() ?></td>
                 <td>Edit</td>
-                <td><a href="./<?= $blogger->getId() ?>">Delete</a></td>
+                <td>
+                  <form action="./my-blogs" method="POST">
+                    <input class="btn hidden" type="hidden" name="id" value="<?= $blog->getId() ?>"/>
+                    <input class="btn" type="submit" value="Delete <?= $blog->getId() ?>"/>
+                  </form>
+                </td>
               </tr>
             <?php endforeach; ?>
           </table>

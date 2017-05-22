@@ -189,10 +189,25 @@ require '/home/costrander/config.php';
              
             // create an array of blogger objects
             while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
-                $temp = new BlogPost($row['title'], $row['post'], $row['date'], str_word_count($row['post']));
+                $temp = new BlogPost($row['title'], $row['post'], $row['date'], str_word_count($row['post']), $row['post_id']);
                 $resultsArray[] = $temp;
             }
             
             return $resultsArray;
+        }
+        
+        /**
+         * Deletes a post associated with a post id
+         *
+         * @access public
+         * @param int $id the id of the post you want to delete
+         */
+        function delPost($id)
+        {
+            $select = "DELETE FROM posts WHERE post_id = :id";
+             
+            $statement = $this->_pdo->prepare($select);
+            $statement->bindValue(':id', $id, PDO::PARAM_INT);
+            $statement->execute();
         }
     }

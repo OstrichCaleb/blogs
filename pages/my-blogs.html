@@ -44,7 +44,12 @@
               <tr>
                 <td>{{ @blog->getTitle() }}</td>
                 <td>Edit</td>
-                <td><a href="./{{ @blogger->getId() }}">Delete</a></td>
+                <td>
+                  <form action="./my-blogs" method="POST">
+                    <input class="btn hidden" type="hidden" name="id" value="{{ @blog->getId() }}"/>
+                    <input class="btn" type="submit" value="Delete {{ @blog->getId() }}"/>
+                  </form>
+                </td>
               </tr>
             </repeat>
           </table>
