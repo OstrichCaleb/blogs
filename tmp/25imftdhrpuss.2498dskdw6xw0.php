@@ -19,8 +19,8 @@
   <div class="row content">
     
     <?php if ($SESSION['id'] == NULL): ?>
-      <?php echo $this->render('includes/sidebarAll.inc.html',NULL,get_defined_vars(),0); ?>YAY
-      <?php else: ?><?php echo $this->render('includes/sidebarUser.inc.html',NULL,get_defined_vars(),0); ?>BOO
+      <?php echo $this->render('includes/sidebarAll.inc.html',NULL,get_defined_vars(),0); ?>
+      <?php else: ?><?php echo $this->render('includes/sidebarUser.inc.html',NULL,get_defined_vars(),0); ?>
     <?php endif; ?>
 
     <div class="col-sm-9">

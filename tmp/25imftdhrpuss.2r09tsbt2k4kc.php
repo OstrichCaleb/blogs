@@ -18,7 +18,7 @@
 <div class="container-fluid">
   <div class="row content">
     
-    <?php if ($id == NULL): ?>
+    <?php if ($SESSION['id'] == NULL): ?>
       <?php echo $this->render('includes/sidebarAll.inc.html',NULL,get_defined_vars(),0); ?>
       <?php else: ?><?php echo $this->render('includes/sidebarUser.inc.html',NULL,get_defined_vars(),0); ?>
     <?php endif; ?>
@@ -34,7 +34,7 @@
         </div>
       </div>
       <div class="row">
-        <form action="./" method="post" class="form-vertical">
+        <form action="./" method="post" enctype="multipart/form-data" class="form-vertical">
           <div class="col-sm-6">
             <div class="row">
               <div class="col-sm-8">
@@ -72,7 +72,7 @@
           <div class="col-sm-6">
             <div class="row">
               <div class="col-sm-8">
-                <input id="photo" type="file" id="photo" name="photo" accept="image/*" />
+                <input id="photo" type="file" name="photo" accept="image/*" />
               </div>
               <div class="col-sm-4">
                 <label for="photo" class="control-label col-sm">Upload Portrait</label>

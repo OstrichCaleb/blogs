@@ -22,11 +22,21 @@
 		{
 			$bloggerDB = $GLOBALS['bloggerDB'];
 			
+			move_uploaded_file($_FILES["photo"]["tmp_name"], "images/" . basename($_FILES["photo"]["name"]));
+			
+			$username = $_POST['username'];
+			$email = $_POST['email'];
+			$photo = $_POST['photo'];
+			$bio = $_POST['bio'];
 			$pass = md5($_POST['password']);
-			$blogger = new Blogger($_POST['username'], $_POST['email'], $_POST['photo'], $_POST['bio'], -1, 0, $pass);
+			
+			$blogger = new Blogger($username, $email, $photo, $bio, -1, 0, $pass);
+			
 			$id = $bloggerDB->addBlogger($blogger);
+			
 			$_SESSION['id'] = $id;
 			$f3->set('SESSION.id', $id);
+			
 			unset($_POST);
 		}
 		
