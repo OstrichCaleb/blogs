@@ -151,4 +151,26 @@ require '/home/costrander/config.php';
             return $temp;
         }
         
+        /**
+         * Returns a summary of the latest blog by a blogger
+         *
+         * @access public
+         * @param int $id the id of the blogger
+         *
+         * @return a String that has a summary of the latest blog
+         */
+        function latestBlog($id)
+        {
+            $select = 'SELECT MAX(date), post FROM posts WHERE member_id = :id';
+             
+            $statement = $this->_pdo->prepare($select);
+            $statement->bindValue(':id', $id, PDO::PARAM_INT);
+            $statement->execute();
+             
+            $row = $statement->fetch(PDO::FETCH_ASSOC);
+            
+            $summary = substr($row['post'], 0, 200);
+            
+            return $summary;
+        }
     }
