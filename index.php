@@ -121,6 +121,7 @@
     {
 		$bloggerDB = $GLOBALS['bloggerDB'];
 		
+		$f3->set('blogs', $bloggerDB->blogsById($params['id']));
 		$f3->set('blogger', $bloggerDB->bloggerById($params['id']));
 		
         echo Template::instance()->render('pages/profile.html');

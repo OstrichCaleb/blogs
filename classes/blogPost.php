@@ -11,6 +11,7 @@
         private $_post;
         private $_id;
         private $_memberId;
+        private $_date;
         
         /**
          * A constructor for the blog post class setting all the basic information
@@ -20,11 +21,13 @@
          * @param Entry post
          * @param Id
          * @param memberId
+         * @param date entered
          */
-        function __construct($title = "NA", $post = "NA", $id = -1, $memberId = -1;)
+        function __construct($title = "NA", $post = "NA", $date = NULL, $id = -1, $memberId = -1)
         {
             $this->_title = $title;
             $this->_post = $post;
+            $this->_date = $date;
             $this->_id = $id;
             $this->_memberId = $memberId;
         }
@@ -107,5 +110,25 @@
         function getMemberId()
         {
             return $this->_memberId;
+        }
+        
+        /**
+         * A setter for their date
+         *
+         *@param Their date
+         */
+        function setDate($date)
+        {
+            $this->_date = $date;
+        }
+        
+        /**
+         * A getter for their date
+         *
+         * @return Their date
+         */
+        function getDate()
+        {
+            return $this->_date;
         }
     }

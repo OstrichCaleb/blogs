@@ -168,4 +168,31 @@ require '/home/costrander/config.php';
             
             return $summary;
         }
+        
+        /**
+         * Returns an array of blogs by a user that has the given id.
+         *
+         * @access public
+         * @param int $id the id of the blogger
+         *
+         * @return an associative array of blogs by the blogger
+         */
+        function blogsById($id)
+        {
+            $select = "SELECT * FROM posts WHERE member_id = :id";
+             
+            $statement = $this->_pdo->prepare($select);
+            $statement->bindValue(':id', $id, PDO::PARAM_INT);
+            $statement->execute();
+            
+            $resultsArray = array();
+             
+            // create an array of blogger objects
+            while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
+                $temp = new BlogPost($row['title'], $row['post']);
+                $resultsArray[] = $temp;
+            }
+            
+            return $resultsArray;
+        }
     }

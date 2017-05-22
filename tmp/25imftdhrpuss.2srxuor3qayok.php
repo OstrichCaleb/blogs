@@ -25,12 +25,41 @@
 
     <div class="col-sm-9">
       <div class="row">
+        <div class="col text-center">
+          <h1><?= $blogger->getUsername() ?> Blogs</h1>
+        </div>
+      </div>
+      <div class="row">
         <div class="col-sm-9">
-          <h1><?= $blogger->getUsername() ?></h1>
-          <h4></h4>
+          <div class="row">
+            <div class="col">
+              <h3>My blogs:</h3>
+            </div>
+          </div>
+          <?php foreach (($blogs?:[]) as $blog): ?>
+            <p><?= $blog->getTitle() ?></p>
+          <?php endforeach; ?>
         </div>
         <div class="col-sm-3">
-          <img src="#">
+          <div class="row">
+            <div class="col">
+              <img src="../images/<?= $blogger->getPhoto() ?>" width="100%" height=100%">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="row">
+                <div class="col text-center">
+                  <h3><?= $blogger->getUsername() ?></h3>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <p>Bio: <?= $blogger->getBio() ?></p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
