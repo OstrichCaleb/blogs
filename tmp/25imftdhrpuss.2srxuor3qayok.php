@@ -23,15 +23,15 @@ Blog Assignment -->
   
   <body>
     
-    <check if="{{ @SESSION.id == NULL }}">
-      <true><include href="includes/sidebarAll.inc.html"/></true>
-      <false><include href="includes/sidebarUser.inc.html"/></false>
-    </check>
+    <?php if ($SESSION['id'] == NULL): ?>
+      <?php echo $this->render('includes/sidebarAll.inc.html',NULL,get_defined_vars(),0); ?>
+      <?php else: ?><?php echo $this->render('includes/sidebarUser.inc.html',NULL,get_defined_vars(),0); ?>
+    <?php endif; ?>
     
     <div class="container text-center" id="main-container">
         <div class="row">
             <div class="col-sm-2">
-                <h1>{{ @blogger->getUsername() }}</h1>
+                <h1><?= $blogger->getUsername() ?></h1>
             </div>
         </div>
     </div>

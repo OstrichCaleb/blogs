@@ -27,10 +27,26 @@
       <div class="row">
         <repeat group="{{ @bloggers }}" value="{{ @blogger }}">
           <div class="col-sm-4">
-              <row>
-                <img src="images/{{ @blogger->getPhoto() }}" height="33%" width="33%">
-                <h5>{{ @blogger->getUsername() }}</h5>
-              </row>
+              <div class="row">
+                <div class="col">
+                  <img src="images/{{ @blogger->getPhoto() }}" height="50%" width="50%">
+                  <p>{{ @blogger->getUsername() }}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-4">
+                  <a href="./profile/{{ @blogger->getId() }}">view blogs</a>
+                </div>
+                <div class="col-sm-4 col-sm-offset-4">
+                  <p>Total: {{ @blogger->getNumPosts }}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <p>Something from my latest blog: </p>
+                  <p>{{ @blogger->getLatest }}</p>
+                </div>
+              </div>
           </div>
         </repeat>
       </div>

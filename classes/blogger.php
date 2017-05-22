@@ -14,6 +14,7 @@
         private $_bio;
         private $_id;
         private $_numPosts;
+        private $_latest;
         
         /**
          * A constructor for the Blogger class setting all the basic information
@@ -26,8 +27,9 @@
          * @param Biography
          * @param id
          * @param number of their posts
+         * @param their latests post
          */
-        function __construct($username = "NA", $email = "NA", $photo = "NA", $bio = "NA", $id = -1, $numPosts = 0, $password = "NA")
+        function __construct($username = "NA", $email = "NA", $photo = "NA", $bio = "NA", $id = -1, $numPosts = 0, $password = "NA", $latest = "NA")
         {
             $this->_username = $username;
             $this->_email = $email;
@@ -36,6 +38,7 @@
             $this->_bio = $bio;
             $this->_id = $id;
             $this->_numPosts = $numPosts;
+            $this->_latest = $latest;
         }
         
         /**
@@ -176,5 +179,25 @@
         function getNumPosts()
         {
             return $this->_numPosts;
+        }
+        
+        /**
+         * A setter for their latests post
+         *
+         *@param Their number of latests post
+         */
+        function setLatest($latest)
+        {
+            $this->_latest = $latest;
+        }
+        
+        /**
+         * A getter for their latests post
+         *
+         * @return Their latests post
+         */
+        function getLatest()
+        {
+            return $this->_latest;
         }
     }

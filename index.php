@@ -32,7 +32,7 @@
 			$bio = $_POST['bio'];
 			$pass = md5($_POST['password']);
 			
-			$blogger = new Blogger($username, $email, $photo, $bio, -1, 0, $pass);
+			$blogger = new Blogger($username, $email, $photo, $bio, -1, 0, $pass, "NA");
 			
 			$id = $bloggerDB->addBlogger($blogger);
 			
@@ -117,8 +117,12 @@
     }
     );
 	
-	$f3->route('GET /profile', function($f3)
+	$f3->route('GET /profile/@id', function($f3, $params)
     {
+		$bloggerDB = $GLOBALS['bloggerDB'];
+		
+		$f3->set('blogger', $bloggerDB->bloggerById($params['id']));
+		
         echo Template::instance()->render('pages/profile.html');
     }
     );

@@ -93,7 +93,7 @@ require '/home/costrander/config.php';
          */
         function allBloggers()
         {
-            $select = 'SELECT *, (SELECT COUNT(*) AS "numPosts" FROM posts WHERE posts.member_id = bloggers.blogger_id) FROM bloggers';
+            $select = 'SELECT *, (SELECT COUNT(*) AS "numPosts" FROM posts WHERE posts.member_id = bloggers.blogger_id), (SELECT summary AS "summary" FROM posts WHERE posts.member_id = bloggers.blogger_id) FROM bloggers';
                             
             $results = $this->_pdo->query($select);
              
@@ -101,7 +101,13 @@ require '/home/costrander/config.php';
              
             // create an array of blogger objects
             while ($row = $results->fetch(PDO::FETCH_ASSOC)) {
-                $temp = new Blogger($row['username'], $row['email'], $row['photo'], $row['bio'], $row['blogger_id'], $row['numPosts']);
+                if ($row['summary'] == NULL){
+                    $summary = "NA";
+                }
+                else{
+                    $summary = $row['summary'];
+                }
+                $temp = new Blogger($row['username'], $row['email'], $row['photo'], $row['bio'], $row['blogger_id'], $row['numPosts'], $summary);
                 $resultsArray[] = $temp;
             }
             
@@ -110,7 +116,7 @@ require '/home/costrander/config.php';
         
         function login($user)
         {
-            $select = 'SELECT blogger_id, password FROM bloggers where username = :user';
+            $select = 'SELECT blogger_id, password FROM bloggers WHERE username = :user';
              
             $statement = $this->_pdo->prepare($select);
             $statement->bindValue(':user', $user, PDO::PARAM_INT);
@@ -122,24 +128,27 @@ require '/home/costrander/config.php';
         }
          
         /**
-         * Returns a member that has the given id.
+         * Returns a blogger that has the given id.
          *
          * @access public
-         * @param int $id the id of the member
+         * @param int $id the id of the blogger
          *
-         * @return an associative array of member attributes, or false if
+         * @return an associative array of blogger attributes, or false if
          * the member was not found
          */
-        function memberById($id)
+        function bloggerById($id)
         {
-            $select = 'SELECT member_id, fname, lname, age, gender, phone, email,
-                            state, seeking, bio, premium, image FROM members where member_id = :id';
+            $select = 'SELECT * FROM bloggers WHERE blogger_id = :id';
              
             $statement = $this->_pdo->prepare($select);
             $statement->bindValue(':id', $id, PDO::PARAM_INT);
             $statement->execute();
              
-            return $statement->fetch(PDO::FETCH_ASSOC);
+            $row = $statement->fetch(PDO::FETCH_ASSOC);
+            
+            $temp = new Blogger($row['username'], $row['email'], $row['photo'], $row['bio'], $row['blogger_id'], $row['numPosts'], $summary);
+            
+            return $temp;
         }
         
     }
