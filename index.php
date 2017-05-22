@@ -18,15 +18,17 @@
 	
     $f3->route('GET|POST /', function($f3)
     {
+		$bloggerDB = $GLOBALS['bloggerDB'];
+		
 		if ($_SERVER['REQUEST_METHOD'] === 'POST')
 		{
-			$bloggerDB = $GLOBALS['bloggerDB'];
-			
-			move_uploaded_file($_FILES["photo"]["tmp_name"], "images/" . basename($_FILES["photo"]["name"]));
+			if (move_uploaded_file($_FILES["photo"]["tmp_name"], "images/" . basename($_FILES["photo"]["name"])))
+			{
+				$photo = $_FILES["photo"]["name"];
+			}
 			
 			$username = $_POST['username'];
 			$email = $_POST['email'];
-			$photo = $_POST['photo'];
 			$bio = $_POST['bio'];
 			$pass = md5($_POST['password']);
 			
@@ -39,6 +41,8 @@
 			
 			unset($_POST);
 		}
+		
+		$f3->set('bloggers', $bloggerDB->allBloggers());
 		
         echo Template::instance()->render('pages/home.html');
     }

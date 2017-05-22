@@ -272,3 +272,9 @@
 [21-May-2017 21:47:21 America/Chicago] PHP Parse error:  syntax error, unexpected '$pass' (T_VARIABLE) in /home/costrander/public_html/328/blogs/index.php on line 29
 [21-May-2017 21:47:39 America/Chicago] PHP Parse error:  syntax error, unexpected '$bio' (T_VARIABLE), expecting ',' or ')' in /home/costrander/public_html/328/blogs/index.php on line 31
 [21-May-2017 21:59:53 America/Chicago] PHP Parse error:  syntax error, unexpected '$username' (T_VARIABLE) in /home/costrander/public_html/328/blogs/index.php on line 27
+[21-May-2017 22:57:29 America/Chicago] HTTP 404 (GET /images/purple.PNG)
+[21-May-2017 22:57:29 America/Chicago] [328/blogs/vendor/bcosca/fatfree-core/base.php:1645] Base->error()
+[21-May-2017 22:57:29 America/Chicago] [328/blogs/index.php:139] Base->run()
+[21-May-2017 22:58:12 America/Chicago] HTTP 404 (GET /images/purple.PNG)
+[21-May-2017 22:58:12 America/Chicago] [328/blogs/vendor/bcosca/fatfree-core/base.php:1645] Base->error()
+[21-May-2017 22:58:12 America/Chicago] [328/blogs/index.php:139] Base->run()

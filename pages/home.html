@@ -25,13 +25,14 @@
 
     <div class="col-sm-9">
       <div class="row">
-        <div class="col-sm-9">
-          <h1></h1>
-          <h4></h4>
-        </div>
-        <div class="col-sm-3">
-          <img src="#">
-        </div>
+        <repeat group="{{ @bloggers }}" value="{{ @blogger }}">
+          <div class="col-sm-4">
+              <row>
+                <img src="images/{{ @blogger->getPhoto() }}" height="33%" width="33%">
+                <h5>{{ @blogger->getUsername() }}</h5>
+              </row>
+          </div>
+        </repeat>
       </div>
     </div>
   </div>
