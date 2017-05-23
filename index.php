@@ -171,4 +171,34 @@
     }
     );
 	
+	$f3->route('GET|POST /update@id', function($f3, $params)
+    {
+		if ($_SESSION['id'] == NULL)
+		{
+			$f3->reroute('/');
+		}
+		
+		$bloggerDB = $GLOBALS['bloggerDB'];
+			
+		$blogId = $params['id'];
+		
+		$f3->set('blog', $bloggerDB->blogById($blogId));
+		
+		if ($_SERVER['REQUEST_METHOD'] === 'POST')
+		{
+			$title = $_POST['title'];
+			$postInfo = $_POST['post'];
+			
+			$post = new BlogPost($title, $postInfo);
+			$post->setMemberId($_SESSION['id']);
+			$post->setId($blogId);
+			
+			$bloggerDB->updatePost($post);
+			$f3->reroute('/my-blogs');
+		}
+		
+        echo Template::instance()->render('pages/update.html');
+    }
+    );
+	
     $f3->run();

@@ -43,7 +43,7 @@
             <?php foreach (($blogs?:[]) as $blog): ?>
               <tr>
                 <td><?= $blog->getTitle() ?></td>
-                <td>Edit</td>
+                <td><a href="./update<?= $blog->getId() ?>">Edit</a></td>
                 <td>
                   <form action="./my-blogs" method="POST">
                     <input class="btn hidden" type="hidden" name="id" value="<?= $blog->getId() ?>"/>

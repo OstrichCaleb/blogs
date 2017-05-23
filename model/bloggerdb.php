@@ -189,7 +189,7 @@ require '/home/costrander/config.php';
              
             // create an array of blogger objects
             while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
-                $temp = new BlogPost($row['title'], $row['post'], $row['date'], str_word_count($row['post']), $row['post_id']);
+                $temp = new BlogPost($row['title'], substr($row['post'],0,155), $row['date'], str_word_count($row['post']), $row['post_id']);
                 $resultsArray[] = $temp;
             }
             
@@ -230,6 +230,23 @@ require '/home/costrander/config.php';
              
             $statement = $this->_pdo->prepare($select);
             $statement->bindValue(':id', $id, PDO::PARAM_INT);
+            $statement->execute();
+        }
+        
+        /**
+         * A method to update a blog post to the database
+         *
+         *@param The blog post object that you want to update
+         */
+        function updatePost($post)
+        {
+            $insert = 'UPDATE posts SET post = :post, title = :title WHERE post_id = :post_id';
+            
+            $statement = $this->_pdo->prepare($insert);
+            $statement->bindValue(':post', $post->getPost(), PDO::PARAM_STR);
+            $statement->bindValue(':title', $post->getTitle(), PDO::PARAM_STR);
+            $statement->bindValue(':post_id', $post->getId(), PDO::PARAM_STR);
+            
             $statement->execute();
         }
     }
