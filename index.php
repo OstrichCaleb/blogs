@@ -20,10 +20,8 @@
     {
 		$bloggerDB = $GLOBALS['bloggerDB'];
 		
-		if ($_SERVER['REQUEST_METHOD'] === 'POST')
-		{
-			if (move_uploaded_file($_FILES["photo"]["tmp_name"], "images/" . basename($_FILES["photo"]["name"])))
-			{
+		if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+			if (move_uploaded_file($_FILES["photo"]["tmp_name"], "images/" . basename($_FILES["photo"]["name"]))){
 				$photo = $_FILES["photo"]["name"];
 			}
 			
@@ -72,8 +70,7 @@
 	
 	$f3->route('GET|POST /login', function($f3)
     {
-		if ($_SERVER['REQUEST_METHOD'] === 'POST')
-		{
+		if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 			$user = $_POST['username'];
 			$pass = md5($_POST['password']);
 			
@@ -81,16 +78,14 @@
 			
 			$creds = $bloggerDB->login($user);
 			
-			if ($creds['password'] == $pass)
-			{
+			if ($creds['password'] == $pass){
 				$f3->set('SESSION.id', $id);
 				$_SESSION['id'] = $creds['blogger_id'];
 				unset($_POST);
 			}
 		}
 		
-		if ($_SESSION['id'] != NULL)
-		{
+		if ($_SESSION['id'] != NULL){
 			$f3->reroute('/');
 		}
         echo Template::instance()->render('pages/login.html');
@@ -99,15 +94,13 @@
 	
 	$f3->route('GET|POST /my-blogs', function($f3)
     {
-		if ($_SESSION['id'] == NULL)
-		{
+		if ($_SESSION['id'] == NULL){
 			$f3->reroute('/');
 		}
 		
 		$bloggerDB = $GLOBALS['bloggerDB'];
 		
-		if ($_SERVER['REQUEST_METHOD'] === 'POST')
-		{
+		if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 			if (sizeof($_POST[0]) > 1){
 				$title = $_POST['title'];
 				$post = $_POST['post'];
@@ -133,8 +126,7 @@
     
 	$f3->route('GET /new-blog', function($f3)
     {
-		if ($_SESSION['id'] == NULL)
-		{
+		if ($_SESSION['id'] == NULL){
 			$f3->reroute('/');
 		}
         echo Template::instance()->render('pages/new-blog.html');
@@ -173,8 +165,7 @@
 	
 	$f3->route('GET|POST /update@id', function($f3, $params)
     {
-		if ($_SESSION['id'] == NULL)
-		{
+		if ($_SESSION['id'] == NULL){
 			$f3->reroute('/');
 		}
 		
@@ -184,8 +175,7 @@
 		
 		$f3->set('blog', $bloggerDB->blogById($blogId));
 		
-		if ($_SERVER['REQUEST_METHOD'] === 'POST')
-		{
+		if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 			$title = $_POST['title'];
 			$postInfo = $_POST['post'];
 			
