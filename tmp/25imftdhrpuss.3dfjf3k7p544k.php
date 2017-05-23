@@ -49,7 +49,6 @@
               </div>
             </div>
             
-            // GET RID OF THE STYLE
             <div class="row">
               <div class="col text-center">
                 <textarea rows="4" cols="100%" name="post" id="entry" form="postForm"><?= $blog->getPost() ?></textarea>
