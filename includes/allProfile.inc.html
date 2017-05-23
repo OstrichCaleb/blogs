@@ -4,7 +4,7 @@
         <h2 class="text-center">Blog Site</h2>
       </li>
       <li class="nav-item">
-        <img src="../images/#">
+        <img src="../images/trumpet.gif" height="50%" width="50%"">
       </li>
       <li class="nav-item">
         <a class="nav-link active" href=".././">Home ></a>
