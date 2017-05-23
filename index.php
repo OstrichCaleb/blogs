@@ -101,7 +101,7 @@
 		$bloggerDB = $GLOBALS['bloggerDB'];
 		
 		if ($_SERVER['REQUEST_METHOD'] === 'POST'){
-			if (sizeof($_POST[0]) > 1){
+			if (sizeof($_POST) > 1){
 				$title = $_POST['title'];
 				$post = $_POST['post'];
 				
