@@ -30,7 +30,7 @@
           <h4>Create a new account below</h4>
         </div>
         <div class="col-sm-3">
-          <img src="#">
+          <img src="images/notepad.png" height="70%" width="70%">
         </div>
       </div>
       <div class="row">

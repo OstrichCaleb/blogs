@@ -36,7 +36,7 @@ Blog Assignment -->
               <h2>Whats on your mind?</h2>
             </div>
             <div class="col-sm-2">
-              <img src="#">
+              <img src="images/notepad.png" height="90%" width="90%">
             </div>
           </div>
           

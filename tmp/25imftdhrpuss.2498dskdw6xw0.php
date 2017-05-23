@@ -30,7 +30,7 @@
           <h4>Your one-stop shop for internet blogs</h4>
         </div>
         <div class="col-sm-3">
-          <img src="#">
+          <img src="images/blog.png" height="70%" width="70%">
         </div>
       </div>
       <div class="row">
