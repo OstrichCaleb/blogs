@@ -147,6 +147,27 @@ require '/home/costrander/config.php';
         }
         
         /**
+         * Returns true or false if the username is found in the database
+         *
+         * @access public
+         * @param the username that you want to check for
+         *
+         * @return true or false if the id is found
+         */
+        function checkUsername($username)
+        {
+            $select = 'SELECT * FROM bloggers WHERE username = :username';
+             
+            $statement = $this->_pdo->prepare($select);
+            $statement->bindValue(':username', $username, PDO::PARAM_INT);
+            $statement->execute();
+             
+            $row = $statement->fetch(PDO::FETCH_ASSOC);
+            
+            return $row;
+        }
+        
+        /**
          * Returns a summary of the latest blog by a blogger
          *
          * @access public

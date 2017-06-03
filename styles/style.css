@@ -22,3 +22,9 @@ footer {
   }
   .row.content {height: auto;} 
 }
+
+div.alert {
+    margin-top: 4px;
+    margin-bottom: 4px;
+    display: none;
+}
